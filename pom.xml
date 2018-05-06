@@ -13,7 +13,6 @@
 	   <relativePath>../zg-parent</relativePath>
   </parent>
   
-  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -27,31 +26,67 @@
 	  <version>0.0.1-SNAPSHOT</version>
     </dependency>
     
-     
-    <dependency>
-	   <groupId>commons-fileupload</groupId>
-	   <artifactId>commons-fileupload</artifactId>
-	</dependency> 
 	<dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>javax.servlet-api</artifactId>
 		<scope>provided</scope>
     </dependency>
     
-    <dependency>
-		 <groupId>org.jboss.netty</groupId>
-		 <artifactId>netty</artifactId>
-	</dependency>
-	
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-web</artifactId>
-	</dependency>
-	
 	<dependency>
          <groupId>io.netty</groupId>
          <artifactId>netty-all</artifactId>
     </dependency>
+    
+	<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+	</dependency> 
+	
+	<dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+        </dependency>
+        <!-- 引入json包 -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+        </dependency>
+        <!-- 引入json包 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <!-- 引入json包 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <!-- 引入json包 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+	
+	<!-- 日志相关依赖 -->
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-classic</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-core</artifactId>
+	</dependency>
+	
+	<dependency>
+	    <groupId>javax.websocket</groupId>
+	    <artifactId>javax.websocket-api</artifactId>
+    <scope>provided</scope>
+</dependency>
     
   </dependencies>
   
@@ -59,60 +94,16 @@
   
   <build>
     <finalName>zg-web</finalName>
-    <resources>
+     <resources>
         <resource>
             <directory>src/main/resources</directory>
             <includes>
                 <include>**/*</include>
             </includes>
         </resource>
-        <resource>
-             <directory>src/main/resources</directory>
-             <includes>
-                <include>jdbc.properties</include>
-             </includes>
-             <filtering>true</filtering>
-        </resource>
     </resources>
   </build>
-  <profiles>
-     <profile>
-        <id>test</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <properties>
-            <jdbc.url>test.url</jdbc.url>
-            <jdbc.driver>test.driver</jdbc.driver>
-            <jdbc.username>test.username</jdbc.username>
-            <jdbc.password>test.password</jdbc.password>
-        </properties>
-     </profile>
-     <profile>
-        <id>dev</id>
-        <activation>
-            <activeByDefault>true</activeByDefault>
-        </activation>
-        <properties>
-            <jdbc.url>dev.url</jdbc.url>
-            <jdbc.driver>dev.driver</jdbc.driver>
-            <jdbc.username>dev.username</jdbc.username>
-            <jdbc.password>dev.password</jdbc.password>
-        </properties>
-     </profile>
-     <profile>
-        <id>product</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <properties>
-            <jdbc.url>product.url</jdbc.url>
-            <jdbc.driver>product.driver</jdbc.driver>
-            <jdbc.username>product.username</jdbc.username>
-            <jdbc.password>product.password</jdbc.password>
-        </properties>
-     </profile>
-  </profiles>
+  
   
   <distributionManagement> 
 	<repository> 

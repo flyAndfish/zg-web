@@ -72,7 +72,7 @@
 
     <!-- 5.对模型视图名称的解析，即给模型视图名称添加前后缀 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/" /> <!-- 让ModelAndView("jsp/teacher/listTeachers.jsp") 从/WEB-INF/目录下开始 -->
+        <property name="prefix" value="/" /> <!-- 让ModelAndView("jsp/teacher/listTeachers.jsp") 从/WEB-INF/目录下开始 -->
         <property name="suffix" value="" />
         <!-- <property name="suffix" value=".jsp" /> -->
         <!-- Spring内部资源解析类 -->
@@ -90,4 +90,16 @@
   <!-- 配置資源映射 -->  
   <mvc:resources mapping="/**" location="/" />
 
+  <!-- 声明一个切面BEAN -->
+    <bean id="serviceAspect" class="com.study.pengxin.aop.ServiceAspect"/>
+   <!-- 定义切入点 -->
+    <aop:config>
+        <!-- 声明切面，注入bean -->
+        <aop:aspect id="myAspect" ref="serviceAspect">
+            <aop:pointcut expression="execution(* com.study.pengxin.service.*.*(..))" id="myPointCut"/>
+            <aop:before method="before" pointcut-ref="myPointCut"/>
+            <aop:after method="after" pointcut-ref="myPointCut"/>
+            <aop:around method="around" pointcut-ref="myPointCut"/>
+        </aop:aspect>
+    </aop:config>
 </beans>

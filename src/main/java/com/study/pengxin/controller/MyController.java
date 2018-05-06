@@ -1,6 +1,8 @@
 package com.study.pengxin.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,10 +25,17 @@ public class MyController {
 	@RequestMapping("login")
 	@ResponseBody
 	public String login() {
-		List<ConsultConfigArea> list = commonService.qryArea(null, null);
+		Map map = new HashMap();
+    	map.put("areaCode", "qww");
+		List<ConsultConfigArea> list = commonService.qryArea(map, null);
 		
 		logger.info("登錄成功。。。。");
 		
 		return list.get(0).getAreaCode();
 	}
+	@RequestMapping("chat")
+	public String chat() {
+		return "chat.jsp";
+	}
+	
 }

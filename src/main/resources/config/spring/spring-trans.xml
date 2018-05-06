@@ -29,9 +29,23 @@
            <tx:method name="get*" propagation="SUPPORTS" read-only="true" />
        </tx:attributes>
     </tx:advice>
-    <!-- 切面 -->
+    <!-- 切入点 -->
     <aop:config>
        <aop:advisor advice-ref="txAdvice"
            pointcut="execution(* com.study.pengxin.service.*.*(..))" />
     </aop:config>
+    
+    <!-- 声明一个切面BEAN -->
+    <bean id="serviceAspect" class="com.study.pengxin.aop.ServiceAspect"/>
+    <!-- 定义切入点 -->
+    <aop:config>
+        <!-- 声明切面，注入bean -->
+        <aop:aspect id="myAspect" ref="serviceAspect">
+            <aop:pointcut expression="execution(* com.study.pengxin.service.*.*(..))" id="myPointCut"/>
+            <aop:before method="before" pointcut-ref="myPointCut"/>
+            <aop:after method="after" pointcut-ref="myPointCut"/>
+            <aop:around method="around" pointcut-ref="myPointCut"/>
+        </aop:aspect>
+    </aop:config>
+    
 </beans>
